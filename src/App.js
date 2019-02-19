@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Header from "./components/Header.js";
 import AnimalList from "./components/AnimalList.js";
+import MovieList from "./components/MovieList.js";
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
 
         <h2>App Component</h2>
         <AnimalList />
+        <MovieList />
 
         <footer>
           <p>Made with 💝 at Ironhack</p>
