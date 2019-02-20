@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import "./MovieList.css";
+import AddMovie from "./AddMovie.js";
 
 function longRatingText(movie) {
   if (movie.hasOscars && movie.imdbRating >= 9) {
@@ -73,12 +74,27 @@ class MovieList extends Component {
     this.setState({ showOscarFilmsOnly: !oldFilter });
   }
 
+  // we will send this method to AddMovie to update the array
+  addNewMovie(movieObject) {
+    // get the old array from the state
+    const movies = this.state.movieArray;
+
+    // update the array
+    movies.unshift(movieObject);
+
+    // save the new array in the state to render the component again
+    this.setState({ movieArray: movies });
+  }
+
   render() {
     const { movieArray, showOscarFilmsOnly } = this.state;
 
     return (
       <section className="MovieList">
         <h2>Movie List Example</h2>
+
+        {/* send our addNewMovie() method as a PROP named movieSubmit */}
+        <AddMovie movieSubmit={movieObject => this.addNewMovie(movieObject)} />
 
         <button onClick={() => this.toggleOscarFilter()}>
           Show {showOscarFilmsOnly ? "All Films" : "Oscar Winners Only"}
